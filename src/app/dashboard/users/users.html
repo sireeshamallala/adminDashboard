@@ -1,0 +1,22 @@
+<div class="container">
+    <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th (click)="toggleSort('name')" style="cursor:pointer">Name</th>
+        <th (click)="toggleSort('email')" style="cursor:pointer">Email</th>
+        <th (click)="toggleSort('createdAt')" style="cursor:pointer">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      @for (user of users(); track user._id) {
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.createdAt | date: 'medium'}}</td>
+        </tr>
+      }
+
+    </tbody>
+  </table>
+</div>

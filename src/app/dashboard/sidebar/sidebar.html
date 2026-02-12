@@ -1,0 +1,50 @@
+<aside class="sidebar" [class.collapsed]="collapsed">
+    <!-- <h3>Admin</h3>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a routerLink="/dashboard" routerLinkActive="active" class="nav-link text-white">
+                Dashboard
+            </a>
+        </li>
+        
+    </ul> -->
+
+     @if (!collapsed) {
+       <h3>Admin</h3>
+     } @else {
+        <i class="bi bi-shop"></i>
+     }
+    <ul class="sidebar-list">
+        @for (menu of sidebarMenu; track menu.label) {
+        <li [class.expanded]="menu.expanded">
+            <div class="sidebar-item" (click)="onMenuClick(menu)">
+                <i [class]="menu.icon"></i>
+                @if (!collapsed) {
+                <span class="label">{{ menu.label }}</span>
+                }
+                @if (menu.children?.length && !collapsed) {
+                @if (menu.expanded) {
+                <i class="bi bi-chevron-up expand-icon"></i>
+                } @else {
+                <i class="bi bi-chevron-down expand-icon"></i>
+                }
+
+                }
+            </div>
+            @if (menu.children?.length && menu.expanded && !collapsed) {
+            <ul class="sidebar-sublist">
+                @for (child of menu.children; track child.label) {
+                <li>
+                    <a [routerLink]="child.route" routerLinkActive="active">
+                        <i [class]="child.icon"></i>
+                        {{ child.label }}
+
+                    </a>
+                </li>
+                }
+            </ul>
+            }
+        </li>
+        }
+    </ul>
+</aside>

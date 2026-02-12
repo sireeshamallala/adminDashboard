@@ -1,0 +1,17 @@
+@import '../../../styles.scss';
+
+
+.login-bg {
+    background-image:
+        url('../../../assets/images/light-img.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .login-card {
+        max-width: 400px;
+        width: 100%;
+        background:
+            linear-gradient(rgb(57 67 109 / 88%));
+    }
+}

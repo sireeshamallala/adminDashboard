@@ -1,7 +1,7 @@
 <div class="container-fluid login-bg min-vh-100 d-flex justify-content-center align-items-center">
     <div class="card p-4 shadow login-card">
-         <h5 class="text-center mb-4 text-white">Login</h5>
-        <form [formGroup]="loginForm">
+        <h5 class="text-center mb-4 text-white">Login</h5>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <!-- Email -->
             <div class="mb-3">
                 <label class="form-label text-white">Email</label>
@@ -33,8 +33,14 @@
             <hr class="text-white">
 
             <!-- footer -->
-            <div class="text-center text-white  mt-4">
-                Forgot Password?
+            <div class="d-flex  text-white  mt-4">
+                <div> Forgot Password?</div>
+                <div>
+                    <small>
+                        Don’t have an account?
+                        <a [routerLink] = "['/register']">SignIn</a>
+                    </small>
+                </div>
             </div>
 
         </form>

@@ -1,0 +1,11 @@
+<div class="d-flex vh-100">
+ <app-sidebar 
+   [collapsed]="sidebarCollapsed()">
+ </app-sidebar>
+ <div class="flex-grow-1 d-flex flex-column">
+   <app-top-navbar (toggle)="toggleSidebar()"></app-top-navbar>
+   <main class="flex-grow-1 p-3 overflow-auto">
+     <router-outlet></router-outlet>
+   </main>
+ </div>
+</div>

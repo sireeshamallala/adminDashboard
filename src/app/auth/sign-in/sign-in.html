@@ -1,0 +1,43 @@
+<div class="container-fluid login-bg min-vh-100 d-flex justify-content-center align-items-center">
+    <div class="card p-4 shadow login-card">
+        <h5 class="text-center mb-4 text-white">Sign In</h5>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+            <div class="mb-3">
+                <label class="form-label text-white">Name</label>
+                <input type="name" class="form-control" placeholder="Enter name" formControlName="name"
+                    [class.is-invalid]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+                <div class="invalid-feedback">
+                    Please enter name
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label class="form-label text-white">Email</label>
+                <input type="email" class="form-control" placeholder="Enter email" formControlName="email"
+                    [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                <div class="invalid-feedback">
+                    Please enter a valid email
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-5">
+                <label class="form-label text-white">Password</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Enter password"
+                    [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                <div class="invalid-feedback">
+                    Password is required
+                </div>
+            </div>
+            <button class="btn btn-primary w-100" type="submit">
+                SignIn
+            </button>
+
+            <div class="text-center  text-white  mt-4">
+                <a [routerLink]="['/login']">Login</a>
+            </div>
+
+        </form>
+    </div>
+</div>
