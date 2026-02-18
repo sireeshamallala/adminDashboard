@@ -34,9 +34,7 @@ export class Login {
     this.ApiService.login(this.UrlsList.loginUser, payload).subscribe({
       next: (res) => {
         if (res) {
-          console.log('API RESPONSE:', res);
-          sessionStorage.setItem('token', res.token);
-          console.log('TOKEN AFTER SET:', sessionStorage.getItem('token'));
+          localStorage.setItem('token', res.token);
           this.router.navigate(['/dashboard']);
 
         }

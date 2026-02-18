@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-top-navbar',
@@ -8,5 +10,19 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class TopNavbar {
 
+  private router = inject(Router);
+  private searchService = inject(SearchService);
+  
   @Output() toggle = new EventEmitter<void>();
+
+   onSearch(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchService.search.set(value);
+  }
+
+  logout(){
+    localStorage.removeItem("token");
+    this.router.navigate(["/login"])
+  }
 }
+

@@ -1,22 +1,81 @@
-<div class="container">
-    <table class="table table-bordered table-hover">
+<div class="container mt-5">
+  <table class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th (click)="toggleSort('name')" style="cursor:pointer">Name</th>
-        <th (click)="toggleSort('email')" style="cursor:pointer">Email</th>
-        <th (click)="toggleSort('createdAt')" style="cursor:pointer">Created</th>
+        <th (click)="toggleSort('name')" style="cursor:pointer">
+          Name
+          @if (sort() === 'name') {
+          <i class="bi" [ngClass]="{
+         'bi-arrow-up': order() === 'asc',
+         'bi-arrow-down': order() === 'desc'
+       }">
+          </i>
+          }
+        </th>
+        <th (click)="toggleSort('email')" style="cursor:pointer">
+          Email
+          @if (sort() === 'email') {
+          <i class="bi" [ngClass]="{
+         'bi-arrow-up': order() === 'asc',
+         'bi-arrow-down': order() === 'desc'
+       }">
+          </i>
+          }
+        </th>
+        <th (click)="toggleSort('createdAt')" style="cursor:pointer">
+          Created
+          @if (sort() === 'createdAt') {
+          <i class="bi" [ngClass]="{
+         'bi-arrow-up': order() === 'asc',
+         'bi-arrow-down': order() === 'desc'
+       }">
+          </i>
+          }
+        </th>
       </tr>
     </thead>
     <tbody>
 
       @for (user of users(); track user._id) {
-        <tr>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.createdAt | date: 'medium'}}</td>
-        </tr>
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.createdAt | date: 'medium'}}</td>
+      </tr>
       }
 
     </tbody>
   </table>
+
+
+  <nav>
+    <ul class="pagination d-flex justify-content-end align-items-end">
+      @if (currentPage() > 1) {
+       <li class="page-item">
+           <button class="page-link"
+                (click)="prevPage()">
+          Previous
+        </button>
+      </li>
+      }
+      @for (p of pages(); track p) {
+        <li class="page-item"
+            [class.active]="currentPage() === p">
+          <button class="page-link"
+                  (click)="goToPage(p)">
+            {{ p }}
+          </button>
+        </li>
+      }
+      
+        @if (currentPage() < allPagination().totalPages) {
+        <li class="page-item">
+        <button class="page-link"
+                (click)="nextPage()">
+          Next
+        </button>
+      </li>
+        }
+    </ul>
+  </nav>
 </div>

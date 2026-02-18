@@ -2,7 +2,8 @@ export interface UserQueryParams {
   page: number;
   limit: number;
   search: string;
-  sort: string;
+  sortBy: string;
+  order: string;
 }
 
 export interface User {
@@ -11,11 +12,15 @@ export interface User {
   email: string;
   createdAt: string;
 }
-
-export interface UserApiResponse {
-  success: boolean;
+export interface Pagination {
   totalRecords: number;
   currentPage: number;
   totalPages: number;
+  pageSize: number;
+}
+
+export interface UserApiResponse {
+  success: boolean;
   data: User[];
+  pagination: Pagination;
 }
